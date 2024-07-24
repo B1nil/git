@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Payment Page{% endblock %}
+
+{% block content %}
+<!--<div style="height: 400px; width: 600px;">-->
+    <form action="http://127.0.0.1:8000/cart/payment_status/{{ payment.name }}" method="POST">
+        {% csrf_token %}
+        <script
+            src="https://checkout.razorpay.com/v1/checkout.js"
+            data-key="rzp_test_KjG8ydENFtiZ4P"
+            data-amount="{{ payment.amount }}"
+            data-currency="{{ payment.currency }}"
+            data-order_id="{{ payment.id }}"
+            data-buttontext ="Pay with Razorpay"
+            data-name="Karl Fashion"
+            data-description="Beyond Fashion"
+            data-image="https://example.com/your_logo.jpg"
+            data-prefill.name="{{ payment.name }}"
+            data-prefill.email="{{ payment.email }}"
+            data-theme.color="#F37254"
+        ></script>
+        <input type="hidden" custom="Hidden Element" name="hidden"/>
+    </form>
+<!--</div>-->
+{% endblock %}
+</html>

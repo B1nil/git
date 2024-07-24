@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <!-- Single gallery Item Start -->
+<div class="row">
+    {% for i in p %}
+                    <div class="col-4 col-sm-6 col-md-4 single_gallery_item shoes wow fadeInUpBig" data-wow-delay="0.5s "  ">
+
+                        <!-- Product Image -->
+                        <div class="product-img">
+                            <img  src="{{i.image.url}} "style="height=150px; width=100% alt="">
+                            <div class="product-quicview">
+                                <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
+                            </div>
+                        </div>
+                        <!-- Product Description -->
+                        <div class="product-description">
+                            <h4 class="product-price">{{i.name}}</h4>
+<!--                            <p>{{i.desc}}</p>-->
+                            <!-- Add to Cart -->
+                            <a href="{% url 'shop:product' i.id %}" class="add-to-cart-btn">KNOW MORE</a>
+                        </div>
+
+                  </div>
+{% endfor %}
+</div>
+
+{% endblock %}
+
+    </div>
+
+</div>

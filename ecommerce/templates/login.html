@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    <title>Login</title>
+<link rel="icon" href="{% static 'img/box-arrow-right.svg' %}" type="image/x-icon">
+    {% endblock %}
+{% block content %}
+<h2>Login Page</h2>
+<form class="container" method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">User Name</label>
+      <input type="text" class="form-control" name="u" id="exampleFormControlInput1" placeholder="Enter Name">
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Password</label>
+      <input type="password" class="form-control" name="p" id="exampleFormControlInput2" placeholder="Enter Password">
+    </div>
+    <div class="mb-3">
+        <input type="submit" value="login" class="form-control" style="background-color: green;color:white;font-weight:bold">
+
+    </div>
+
+</form>
+{%  if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="row" >
+		<div class="col-7">
+			<div class="container mt-5 pt-5">
+				<table class="table table-bordered">
+					<tr>
+						<th>Cart Items</th>
+					</tr>
+					{% for i in c %}
+					<tr>
+						<td><img src="{{i.product.image.url}}" height="100px" width="100px"></td>
+						<td>{{i.product.name}}</td>
+						<td>product id :{{i.product.id}}</td>
+						<td>quantity :{{i.quantity}} <br> Unit Price:{{i.product.price}}</td>
+						<td>total :{{i.subtotal}}</td>
+						<td>
+							{% if i.product.stock > 0 %}
+							<a href="{% url 'cart:add_to_cart' i.product.id %}"><i class="fa-solid fa-plus"></i></a> <br>
+							<a href="{% url 'cart:cart_decrement' i.product.id %}"><i class="fa-solid fa-minus"></i></a> <br>
+							<a href="{% url 'cart:remove' i.product.id %}"><i class="fa-solid fa-trash"></i></a>
+							{% endif %}
+						</td>
+					</tr>
+					{% endfor %}
+				</table>
+			</div>
+		</div>
+		<div class="col-5">
+			<div class="container mt-5 pt-5">
+				<table class="table table-bordered" style="width:50%;">
+					<tr>
+						<th>CheckOut</th>
+					</tr>
+					<tr>
+						<th>Total Amount :{{total}} </th>
+					</tr>
+				</table>
+				<a href="{% url 'cart:place_order' %}" class="btn stext-103 cl2 size-102 bg1 bor2 hov-btn1 p-lr-15 trans-04" style="background-color:green;color-white"><b>Place Order</b></a>
+				<a href="{% url 'shop:home' %}" class="btn stext-103 cl2 size-102 bg1 bor2 hov-btn1 p-lr-15 trans-04" style="background-color:blue;color:white"><b>Continue Shopping</b></a>
+				<a href="{% url 'cart:order_view' %}" class="btn stext-103 cl2 size-102 bg1 bor2 hov-btn1 p-lr-15 trans-04" style="background-color:orange;color:white"><b>My Orders</b></a>
+			</div>
+		</div>
+
+	</div>
+
+
+
+{% endblock %}
